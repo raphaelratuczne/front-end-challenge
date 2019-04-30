@@ -1,0 +1,31 @@
+<mat-toolbar>
+  <h1 class="titulo">TODO App</h1>
+  <mat-form-field class="input-tollbar">
+    <input matInput placeholder="Digite aqui..." [(ngModel)]="campo">
+  </mat-form-field>
+  <button class="botao" mat-raised-button color="primary" [disabled]="!campo" (click)="salvar()">Salvar</button>
+</mat-toolbar>
+
+<mat-card class="meu-card">
+  <mat-card-header>
+    <mat-card-title>Lista de tarefas</mat-card-title>
+    <button class="botao" mat-button color="primary" (click)="removerCompletas()">Remover tarefas completas</button>
+
+    <button class="botao" mat-button color="primary" (click)="removerTodas()">Remover todas as tarefas</button>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let item of lista; index as i;">
+        <mat-checkbox class="check-tarefa" [(ngModel)]="item.feito"></mat-checkbox>
+        <p class="txt-tarefa feito" [ngClass]="{feito:item.feito}">{{ item.texto }}</p>
+        <button mat-icon-button (click)="editar(i)">
+          <mat-icon aria-label="Editar">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="excluirItem(i)">
+          <mat-icon aria-label="Excluir">delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
